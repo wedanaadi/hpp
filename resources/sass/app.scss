@@ -1,0 +1,122 @@
+// @import "~bootstrap/scss/bootstrap";
+@import "../css/bootstrap.css";
+@import "~perfect-scrollbar/css/perfect-scrollbar.css";
+@import "~bootstrap-icons/font/bootstrap-icons";
+@import "../css/mazer.css";
+@import "vue-select/dist/vue-select.css";
+
+@import "vue3-date-time-picker/dist/main.css";
+
+@import "v-calendar/dist/style.css";
+
+.sidebar-wrapper .sidebar-header img {
+    height: 4.5rem;
+}
+
+.login-header {
+    padding: 1rem 2rem;
+    border-bottom: 3px solid black;
+    img {
+        height: 5rem;
+    }
+}
+
+.img-thumbnail {
+    width: 300px !important;
+    height: 300px !important;
+}
+
+.sidebar-wrapper .menu {
+    margin-top: 1rem;
+}
+
+.sidebar-wrapper .menu .sidebar-title {
+    margin: 0.5rem 0 1rem;
+}
+
+.logout {
+    color: #607080;
+}
+
+.logout:hover {
+    background-color: #f0f1f5;
+    padding-left: 1rem;
+}
+
+.card-title {
+    float: left;
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.7;
+}
+.card-tools {
+    float: right;
+    // margin-right: -0.625rem;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+.spinner-border {
+    height: 1rem;
+    width: 1rem;
+}
+
+.select-invalid {
+    .vs__dropdown-toggle {
+        border: 1px solid #dc3545 !important;
+    }
+}
+
+.is-invalid {
+    .dp__pointer {
+        border: 1px solid #dc3545 !important;
+    }
+}
+
+.select-error {
+    font-size: 0.875em;
+}
+
+// datatables
+.datatable-style {
+    .table-style {
+        margin-bottom: 10px;
+    }
+
+    .table {
+        width: 100%;
+
+        .sorting {
+            background-image: url("../images/sort_both.png");
+            background-repeat: no-repeat;
+            background-position: center right;
+        }
+        .sorting_asc {
+            background-image: url("../images/sort_asc.png");
+            background-repeat: no-repeat;
+            background-position: center right;
+        }
+        .sorting_desc {
+            background-image: url("../images/sort_desc.png");
+            background-repeat: no-repeat;
+            background-position: center right;
+        }
+    }
+
+    nav > a {
+        color: white !important;
+        margin-right: 10px;
+    }
+}
+.pagination {
+    justify-content: flex-end !important;
+    .page-stats {
+        align-items: center;
+        margin-right: 5px;
+    }
+    i {
+        color: #3273dc !important;
+    }
+}
