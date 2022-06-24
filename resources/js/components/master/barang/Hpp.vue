@@ -1,9 +1,9 @@
 <template>
   <div class="card">
     <div class="card-header">
-      <h4 class="card-title">Last HPP Barang</h4>
+      <h4 class="card-title">Last HPP Menu</h4>
       <div class="card-tools">
-        <router-link :to="{ name: 'backend.barang' }" class="btn btn-secondary">
+        <router-link :to="{ name: 'backend.menu' }" class="btn btn-secondary">
           <i class="bi bi-arrow-left"></i> Back
         </router-link>
       </div>

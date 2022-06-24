@@ -81,6 +81,10 @@
                   <button class="btn btn-success" @click="detailModal(r.detail)">
                     <i class="bi bi-eye-fill"></i> Detail
                   </button>
+                  &nbsp;
+                  <button class="btn btn-danger" @click="hapusData(r.id)">
+                    <i class="bi bi-trash"></i> Hapus
+                  </button>
                 </td>
               </tr>
               <tr v-show="tableLoading">
@@ -222,6 +226,36 @@ export default {
       this.$router.push({
         name: "penjualan.edit",
         params: { id: item.id },
+      });
+    },
+    hapusData(id) {
+      Swal.fire({
+        title: "Hapus data?",
+        text: "Klik batal untuk membatalkan penghapusan",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Hapus",
+        cancelButtonText: "Batal",
+        cancelButtonColor: "#d33",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axios
+            .delete(`${this.$baseUrl}api/penjualan/${id}`)
+            .then((respon) => {
+              this.getData();
+              Toast.fire({
+                icon: "success",
+                title: respon.data.message,
+              });
+            })
+            .catch((error) => {
+              console.log(error);
+              Toast.fire({
+                icon: "error",
+                title: respon.data.message,
+              });
+            });
+        }
       });
     },
     formatDate(date) {

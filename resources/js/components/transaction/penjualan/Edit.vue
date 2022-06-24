@@ -81,7 +81,7 @@
           <div class="col-12 col-md-3 mt-4">
             <div class="form-group mb-0">
               <button type="button" class="btn btn-info" @click="showListBarang()">
-                Tambah Barang
+                Tambah Menu
               </button>
             </div>
           </div>

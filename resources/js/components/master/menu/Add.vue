@@ -1,10 +1,10 @@
 <template>
-  <form @submit.prevent="saveBarang()" enctype="multipart/form-data">
+  <form @submit.prevent="saveBarang()">
     <div class="card">
       <div class="card-header">
-        <h4 class="card-title">Ubah Barang</h4>
+        <h4 class="card-title">Tambah Menu</h4>
         <div class="card-tools">
-          <router-link :to="{ name: 'backend.barang' }" class="btn btn-secondary">
+          <router-link :to="{ name: 'backend.menu' }" class="btn btn-secondary">
             <i class="bi bi-arrow-left"></i> Back
           </router-link>
         </div>
@@ -153,17 +153,6 @@
             <HasError :form="form" field="file" />
           </div>
         </div>
-        <div class="row">
-          <div class="col-12" v-if="edit">
-            <img
-              :src="`${this.$baseUrl}images/barang/${
-                thumbnail === null ? 'nopict.png' : thumbnail
-              }`"
-              class="img-thumbnail float-end"
-              alt="Gambar"
-            />
-          </div>
-        </div>
       </div>
       <div class="card-footer">
         <button type="submit" class="btn btn-primary float-end" :disabled="disabled">
@@ -224,64 +213,42 @@
 </template>
 <script>
 export default {
-  props: {
-    data: {
-      Type: String,
-      default: null,
-    },
-  },
   data() {
     return {
-      edit: [],
-      thumbnail: "",
       loading: false,
       disabled: false,
       form: new Form({
-        id: "",
         articleNo: "",
         desc: "",
-        jenis: "1",
+        jenis: "2",
         subcategory: null,
         unit: null,
         avrg: 0,
         stock: 0,
         file: null,
-        oldFoto: "",
       }),
       unit: new Form({
         id: "",
         nama_satuan: "",
       }),
       optJenis: [
-        { code: 1, label: "Barang Baku" },
-        { code: 2, label: "Barang Jadi" },
+        { code: "1", label: "Barang Baku" },
+        { code: "2", label: "Barang Jadi" },
       ],
       optUnit: [],
       optSubcategory: [],
     };
   },
   created() {
-    this.edit = JSON.parse(this.data);
-    if (!this.edit) {
-      this.$router.push({ name: "backend.barang" });
-    } else {
-      this.form.id = this.edit.id;
-      this.form.articleNo = this.edit.kode;
-      this.form.desc = this.edit.nama_barang;
-      this.form.jenis = this.edit.jenis;
-      this.form.unit = this.edit.satuan_id;
-      this.form.subcategory = this.edit.subcategory_id;
-      this.form.avrg = this.edit.harga_beli;
-      this.form.stock = this.edit.stock;
-      this.thumbnail = this.edit.foto;
-      this.form.oldFoto = this.edit.foto;
-    }
     this.getSubcategory();
     this.getUnit();
   },
   methods: {
     handleFile(event) {
+      // We'll grab just the first file...
+      // You can also do some client side validation here.
       const file = event.target.files[0];
+
       // Set the file object onto the form...
       this.form.file = file;
     },
@@ -320,14 +287,14 @@ export default {
       this.loading = true;
       this.disabled = true;
       this.form
-        .post(`${this.$baseUrl}api/barangUpdate/${this.form.id}`)
+        .post(`${this.$baseUrl}api/menu`)
         .then((respon) => {
           Toast.fire({
             icon: respon.data.icon,
             title: respon.data.message,
           });
           if (respon.data.icon === "success") {
-            this.$router.push({ name: "backend.barang" });
+            this.$router.push({ name: "backend.menu" });
           }
         })
         .catch(() => {

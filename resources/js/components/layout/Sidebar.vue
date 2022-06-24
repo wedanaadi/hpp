@@ -80,8 +80,18 @@
             :class="[menuactive === 'barang' ? 'active' : '']"
           >
             <router-link :to="{ name: 'backend.barang' }" class="sidebar-link">
-              <i class="bi bi-house-door-fill"></i>
+              <i class="bi bi-bookshelf"></i>
               <span>Barang</span>
+            </router-link>
+          </li>
+          <li
+            v-if="level === '1' || level === '4' || level === '0'"
+            class="sidebar-item"
+            :class="[menuactive === 'menu' ? 'active' : '']"
+          >
+            <router-link :to="{ name: 'backend.menu' }" class="sidebar-link">
+              <i class="bi bi-newspaper"></i>
+              <span>Menu</span>
             </router-link>
           </li>
           <li

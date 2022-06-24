@@ -28,161 +28,180 @@ import lb from "./components/reports/LabaRugi.vue";
 import neraca from "./components/reports/Neraca.vue"
 import hppreport from "./components/reports/Persediaan.vue"
 import dashboard from "./components/Dashboard.vue"
+import menu from "./components/master/menu/Menu.vue"
+import menuadd from "./components/master/menu/Add.vue"
+import menuedit from "./components/master/menu/Edit.vue"
 
 export const routes = [
-  {
-    name: "login",
-    path: "/login",
-    component: login,
-  },
-  {
-    name: "backend",
-    path: "/",
-    component: backend,
-    children: [
-      {
-        name: "home",
-        path: "/dashboard",
-        component: dashboard,
-      },
-      {
-        name: "backend.supplier",
-        path: "/supplier",
-        component: supplier,
-      },
-      {
-        name: "backend.user",
-        path: "/user",
-        component: user,
-      },
-      {
-        name: "backend.akun",
-        path: "/akun",
-        component: akun,
-      },
-      {
-        name: "akun.add",
-        path: "/akunadd",
-        component: akunadd,
-      },
-      {
-        name: "akun.edit",
-        path: "/akunedit",
-        component: akunedit,
-        props: true,
-      },
-      {
-        name: "backend.category",
-        path: "/category",
-        component: category,
-      },
-      {
-        name: "backend.subcategory",
-        path: "/subcategory",
-        component: subcategory,
-      },
-      {
-        name: "backend.barang",
-        path: "/barang",
-        component: barang,
-      },
-      {
-        name: "barang.add",
-        path: "/barangadd",
-        component: barangadd,
-      },
-      {
-        name: "barang.hpp",
-        path: "/baranghpp/:id",
-        component: hpp,
-      },
-      {
-        name: "barang.edit",
-        path: "/barangedit",
-        component: barangedit,
-        props: true,
-      },
-      {
-        name: "backend.pembelian",
-        path: "/pembelian",
-        component: pembelian,
-      },
-      {
-        name: "pembelian.add",
-        path: "/pembelian-add",
-        component: pembelianadd,
-      },
-      {
-        name: "pembelian.edit",
-        path: "/pembelian-edit/:id",
-        component: pembelianedit,
-        // props: true,
-      },
-      {
-        name: "backend.jurnal",
-        path: "/jurnal",
-        component: jurnal,
-      },
-      {
-        name: "backend.penjualan",
-        path: "/penjualan",
-        component: penjualan,
-      },
-      {
-        name: "penjualan.add",
-        path: "/penjualan-add",
-        component: penjualanadd,
-      },
-      {
-        name: "penjualan.edit",
-        path: "/penjualan-edit/:id",
-        component: penjualanedit,
-      },
-      {
-        name: "backend.produksi",
-        path: "/produksi",
-        component: produksi,
-      },
-      {
-        name: "produksi.add",
-        path: "/produksi-add",
-        component: produksiadd,
-      },
-      {
-        name: "produksi.edit",
-        path: "/produksi-edit/:id",
-        component: produksiedit,
-      },
-      {
-        name: "report.pembelian",
-        path: "pembelianreport",
-        component: reportpembelian,
-      },
-      {
-        name: "report.penjualan",
-        path: "penjualanreport",
-        component: reportpenjualan,
-      },
-      {
-        name: "report.stock",
-        path: "stockreport",
-        component: reportstock,
-      },
-      {
-        name: "report.labarugi",
-        path: "labarugireport",
-        component: lb,
-      },
-      {
-        name: "report.neraca",
-        path: "neracareport",
-        component: neraca,
-      },
-      {
-        name: "report.persediaan",
-        path: "persediaanreport",
-        component: hppreport,
-      },
-    ],
-  },
+    {
+        name: "login",
+        path: "/login",
+        component: login,
+    },
+    {
+        name: "backend",
+        path: "/",
+        component: backend,
+        children: [
+            {
+                name: "home",
+                path: "/dashboard",
+                component: dashboard,
+            },
+            {
+                name: "backend.supplier",
+                path: "/supplier",
+                component: supplier,
+            },
+            {
+                name: "backend.user",
+                path: "/user",
+                component: user,
+            },
+            {
+                name: "backend.akun",
+                path: "/akun",
+                component: akun,
+            },
+            {
+                name: "akun.add",
+                path: "/akunadd",
+                component: akunadd,
+            },
+            {
+                name: "akun.edit",
+                path: "/akunedit",
+                component: akunedit,
+                props: true,
+            },
+            {
+                name: "backend.category",
+                path: "/category",
+                component: category,
+            },
+            {
+                name: "backend.subcategory",
+                path: "/subcategory",
+                component: subcategory,
+            },
+            {
+                name: "backend.barang",
+                path: "/barang",
+                component: barang,
+            },
+            {
+                name: "barang.add",
+                path: "/barangadd",
+                component: barangadd,
+            },
+            {
+                name: "barang.hpp",
+                path: "/baranghpp/:id",
+                component: hpp,
+            },
+            {
+                name: "barang.edit",
+                path: "/barangedit",
+                component: barangedit,
+                props: true,
+            },
+            {
+                name: "backend.pembelian",
+                path: "/pembelian",
+                component: pembelian,
+            },
+            {
+                name: "pembelian.add",
+                path: "/pembelian-add",
+                component: pembelianadd,
+            },
+            {
+                name: "pembelian.edit",
+                path: "/pembelian-edit/:id",
+                component: pembelianedit,
+                // props: true,
+            },
+            {
+                name: "backend.jurnal",
+                path: "/jurnal",
+                component: jurnal,
+            },
+            {
+                name: "backend.penjualan",
+                path: "/penjualan",
+                component: penjualan,
+            },
+            {
+                name: "penjualan.add",
+                path: "/penjualan-add",
+                component: penjualanadd,
+            },
+            {
+                name: "penjualan.edit",
+                path: "/penjualan-edit/:id",
+                component: penjualanedit,
+            },
+            {
+                name: "backend.produksi",
+                path: "/produksi",
+                component: produksi,
+            },
+            {
+                name: "produksi.add",
+                path: "/produksi-add",
+                component: produksiadd,
+            },
+            {
+                name: "produksi.edit",
+                path: "/produksi-edit/:id",
+                component: produksiedit,
+            },
+            {
+                name: "report.pembelian",
+                path: "pembelianreport",
+                component: reportpembelian,
+            },
+            {
+                name: "report.penjualan",
+                path: "penjualanreport",
+                component: reportpenjualan,
+            },
+            {
+                name: "report.stock",
+                path: "stockreport",
+                component: reportstock,
+            },
+            {
+                name: "report.labarugi",
+                path: "labarugireport",
+                component: lb,
+            },
+            {
+                name: "report.neraca",
+                path: "neracareport",
+                component: neraca,
+            },
+            {
+                name: "report.persediaan",
+                path: "persediaanreport",
+                component: hppreport,
+            },
+            {
+                name: "backend.menu",
+                path: "menu",
+                component: menu
+            },
+            {
+                name: "menu.add",
+                path: "/menuadd",
+                component: menuadd,
+            },
+            {
+                name: "menu.edit",
+                path: "/menuedit",
+                component: menuedit,
+                props: true,
+            },
+        ],
+    },
 ];

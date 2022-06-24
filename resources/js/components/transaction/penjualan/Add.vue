@@ -81,7 +81,7 @@
           <div class="col-12 col-md-3 mt-4">
             <div class="form-group mb-0">
               <button type="button" class="btn btn-info" @click="showListBarang()">
-                Tambah Barang
+                Tambah Menu
               </button>
             </div>
           </div>
@@ -363,7 +363,6 @@ export default {
             this.optAkun.push({
               code: row.id,
               label: `${row.kode_sub} | ${row.nama_akun}`,
-              b,
             });
           });
         })

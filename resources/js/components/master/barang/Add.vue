@@ -56,6 +56,7 @@
                 :options="optJenis"
                 placeholder="Jenis Barang..."
                 :class="{ 'select-invalid': form.errors.has('jenis') }"
+                disabled
               ></v-select>
               <div
                 class="text-danger select-error"
@@ -219,7 +220,7 @@ export default {
       form: new Form({
         articleNo: "",
         desc: "",
-        jenis: null,
+        jenis: "1",
         subcategory: null,
         unit: null,
         avrg: 0,

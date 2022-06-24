@@ -2,9 +2,9 @@
   <form @submit.prevent="saveBarang()" enctype="multipart/form-data">
     <div class="card">
       <div class="card-header">
-        <h4 class="card-title">Ubah Barang</h4>
+        <h4 class="card-title">Ubah Menu</h4>
         <div class="card-tools">
-          <router-link :to="{ name: 'backend.barang' }" class="btn btn-secondary">
+          <router-link :to="{ name: 'backend.menu' }" class="btn btn-secondary">
             <i class="bi bi-arrow-left"></i> Back
           </router-link>
         </div>
@@ -240,7 +240,7 @@ export default {
         id: "",
         articleNo: "",
         desc: "",
-        jenis: "1",
+        jenis: "2",
         subcategory: null,
         unit: null,
         avrg: 0,
@@ -263,7 +263,7 @@ export default {
   created() {
     this.edit = JSON.parse(this.data);
     if (!this.edit) {
-      this.$router.push({ name: "backend.barang" });
+      this.$router.push({ name: "backend.menu" });
     } else {
       this.form.id = this.edit.id;
       this.form.articleNo = this.edit.kode;
@@ -320,14 +320,14 @@ export default {
       this.loading = true;
       this.disabled = true;
       this.form
-        .post(`${this.$baseUrl}api/barangUpdate/${this.form.id}`)
+        .post(`${this.$baseUrl}api/menuUpdate/${this.form.id}`)
         .then((respon) => {
           Toast.fire({
             icon: respon.data.icon,
             title: respon.data.message,
           });
           if (respon.data.icon === "success") {
-            this.$router.push({ name: "backend.barang" });
+            this.$router.push({ name: "backend.menu" });
           }
         })
         .catch(() => {

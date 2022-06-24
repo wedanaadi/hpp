@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <div class="card-header">
-      <h4 class="card-title">Data Barang</h4>
+      <h4 class="card-title">Data Menu</h4>
       <div class="card-tools">
         <button @click="tambah()" type="button" class="btn btn-success">
           <i class="bi bi-plus-square"></i> Tambah
@@ -186,6 +186,7 @@
   </div>
   <detail :data="detaildata"></detail>
 </template>
+
 <script>
 import detail from "./Detail.vue";
 export default {
@@ -281,7 +282,7 @@ export default {
     },
     getData() {
       axios
-        .get(`${this.$baseUrl}api/barang`, { params: this.tableShow })
+        .get(`${this.$baseUrl}api/menu`, { params: this.tableShow })
         .then((response) => {
           this.tableLoading = false;
           this.datas = response.data;
@@ -292,11 +293,11 @@ export default {
         });
     },
     tambah() {
-      this.$router.push({ name: "barang.add" });
+      this.$router.push({ name: "menu.add" });
     },
     update(item) {
       this.$router.push({
-        name: "barang.edit",
+        name: "menu.edit",
         params: { data: JSON.stringify(item) },
       });
     },
@@ -315,7 +316,7 @@ export default {
       }).then((result) => {
         if (result.isConfirmed) {
           axios
-            .delete(`${this.$baseUrl}api/barang/${id}`)
+            .delete(`${this.$baseUrl}api/menu/${id}`)
             .then((respon) => {
               this.getData();
               Toast.fire({
@@ -415,3 +416,5 @@ export default {
   },
 };
 </script>
+
+<style></style>
