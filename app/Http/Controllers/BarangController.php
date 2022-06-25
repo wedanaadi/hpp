@@ -51,12 +51,11 @@ class BarangController extends Controller
 
     public function brg_jual()
     {
-        return Barang::with('unit', 'subcategory', 'subcategory.category')
-            ->orderBy('kode', 'asc')
+        return Barang::orderBy('kode', 'asc')
             ->orderBy('stock', 'desc')
             ->where('is_aktif', '1')
             ->where('jenis', '2')
-            ->where('stock', '>', '0')
+            // ->where('stock', '>', '0')
             ->get();
     }
 

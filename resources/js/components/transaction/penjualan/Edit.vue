@@ -121,16 +121,16 @@
                   <td class="text-center">{{ i + 1 }}</td>
                   <td>{{ r.articleNo }}</td>
                   <td>{{ r.barangname }}</td>
-                  <td>{{ r.unit }}</td>
+                  <!-- <td>{{ r.unit }}</td> -->
                   <td class="text-end">{{ r.qty }}</td>
                   <td class="text-end">
-                    {{ vueNumberFormat(r.price, { precision: 2 }) }}
+                    {{ vueNumberFormat(r.price, { precision: 0 }) }}
                   </td>
                   <td class="text-end">
-                    {{ vueNumberFormat(r.priceActual, { precision: 2 }) }}
+                    {{ vueNumberFormat(r.priceActual, { precision: 0 }) }}
                   </td>
                   <td class="text-end">
-                    {{ vueNumberFormat(r.qty * r.priceActual, { precision: 2 }) }}
+                    {{ vueNumberFormat(r.qty * r.priceActual, { precision: 0 }) }}
                   </td>
                   <td class="text-center">
                     <button
@@ -159,7 +159,7 @@
               </tbody>
               <tfoot>
                 <tr>
-                  <th class="text-end fw-bold" colspan="7">Total</th>
+                  <th class="text-end fw-bold" colspan="6">Total</th>
                   <th class="text-end fw-bold">
                     {{ vueNumberFormat(countSaldo, { precision: 2 }) }}
                   </th>
@@ -218,12 +218,12 @@ export default {
         type: "string",
         style: "cursor: pointer;",
       },
-      {
-        label: "Unit",
-        name: "unit",
-        type: "string",
-        style: "cursor: pointer;",
-      },
+      //   {
+      //     label: "Unit",
+      //     name: "unit",
+      //     type: "string",
+      //     style: "cursor: pointer;",
+      //   },
       {
         label: "Qty",
         name: "qty",

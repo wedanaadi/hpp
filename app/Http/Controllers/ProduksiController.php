@@ -94,7 +94,7 @@ class ProduksiController extends Controller
                 ];
                 $barangData = Barang::findOrFail($row['barangid']);
                 $qty = $row['qty'];
-                if (strtolower($row['unitmain']) === 'kg' or strtolower($row['unitmain']) === 'ml') {
+                if (strtolower($row['unitmain']) === 'kg' or strtolower($row['unitmain']) === 'l') {
                     $qty = $row['qty'] / 1000;
                 }
                 $dataUpBarang = [
@@ -150,12 +150,16 @@ class ProduksiController extends Controller
         DB::beginTransaction();
         try {
             // restored data insert
+            $menu = Barang::findorFail($produksi->barang_id);
+            $menu->update([
+                'stock' => $menu->stock - $produksi->stock_produksi
+            ]);
             $detail = ProduksiDetail::where('produksi_id', $id)->get();
             foreach ($detail as $d) {
-                $barangData = Barang::find($d->bahan_id);
+                $barangData = Barang::with('unit')->find($d->bahan_id);
                 $qty = $d->qty;
-                if (strtolower($d->unit) === 'kg' or strtolower($d->unit) === 'ml') {
-                    $qty = $d->qty / 1000;
+                if (strtolower($barangData->unit->nama_satuan) === 'kg' or strtolower($barangData->unit->nama_satuan) === 'l') {
+                    $qty = (float)$d->qty / 1000;
                 }
                 $databarang = [
                     'stock' => $barangData->stock + $qty,

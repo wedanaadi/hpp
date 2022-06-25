@@ -83,12 +83,8 @@
                     <td class="text-center">{{ i + 1 }}</td>
                     <td>{{ r.kode }}</td>
                     <td>{{ r.nama_barang }}</td>
-                    <td>
-                      {{ r.subcategory.category.category_name }}
-                      -
-                      {{ r.subcategory.subcategory_name }}
-                    </td>
-                    <td>{{ r.unit.nama_satuan }}</td>
+                    <!-- <td>Menu</td>
+                    <td>Sat</td> -->
                     <td class="text-center">{{ r.stock }}</td>
                     <td class="text-center">
                       {{ vueNumberFormat(r.harga_jual, { precision: 2 }) }}
@@ -238,7 +234,7 @@
             :disabled="disabled"
           >
             <div v-show="loading" class="spinner-border text-white" role="status"></div>
-            Tambah Barang
+            Tambah Menu
           </button>
         </div>
       </div>
@@ -264,18 +260,18 @@ export default {
         type: "string",
         style: "cursor: pointer;",
       },
-      {
-        label: "Main - Sub Group",
-        name: "mainsub",
-        type: "string",
-        style: "cursor: pointer;",
-      },
-      {
-        label: "Unit",
-        name: "unit",
-        type: "string",
-        style: "cursor: pointer;",
-      },
+      //   {
+      //     label: "Main - Sub Group",
+      //     name: "mainsub",
+      //     type: "string",
+      //     style: "cursor: pointer;",
+      //   },
+      //   {
+      //     label: "Unit",
+      //     name: "unit",
+      //     type: "string",
+      //     style: "cursor: pointer;",
+      //   },
       {
         label: "Stock",
         name: "stock",
@@ -345,7 +341,7 @@ export default {
       this.barangAdd.price = item.harga_jual;
       this.barangAdd.priceActual = item.harga_jual;
       this.barangAdd.stock = item.stock;
-      this.barangAdd.unit = item.unit.nama_satuan;
+      this.barangAdd.unit = "-";
       this.barangAdd.articleNo = item.kode;
     },
     addBarang() {

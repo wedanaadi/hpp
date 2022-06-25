@@ -360,7 +360,7 @@ export default {
       sortOrders[column.name] = -1;
     });
     return {
-      bahanDisabled: true,
+      bahanDisabled: false,
       tableLoading: false,
       columns: columns,
       sortKey: "code",

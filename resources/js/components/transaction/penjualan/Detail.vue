@@ -81,7 +81,7 @@
                     <td class="text-center">{{ i + 1 }}</td>
                     <td>{{ r.articleNo }}</td>
                     <td>{{ r.barangname }}</td>
-                    <td>{{ r.unit }}</td>
+                    <!-- <td>{{ r.unit }}</td> -->
                     <td class="text-end">{{ r.qty }}</td>
                     <td class="text-end">
                       {{ vueNumberFormat(r.price, { precision: 2 }) }}
@@ -190,12 +190,12 @@ export default {
         type: "string",
         style: "cursor: pointer;",
       },
-      {
-        label: "Unit",
-        name: "unit",
-        type: "string",
-        style: "cursor: pointer;",
-      },
+      //   {
+      //     label: "Unit",
+      //     name: "unit",
+      //     type: "string",
+      //     style: "cursor: pointer;",
+      //   },
       {
         label: "Qty",
         name: "qty",
@@ -292,7 +292,7 @@ export default {
             if (
               key.toLowerCase() === "articleno" ||
               key.toLowerCase() === "barangname" ||
-              key.toLowerCase() === "unit" ||
+              //   key.toLowerCase() === "unit" ||
               key.toLowerCase() === "qty" ||
               key.toLowerCase() === "price" ||
               key.toLowerCase() === "priceActual" ||

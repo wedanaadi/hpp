@@ -200,6 +200,13 @@ class PenjualanController extends Controller
     {
         DB::beginTransaction();
         try {
+            $detil = PenjualanDetail::all();
+            foreach ($detil as $d) {
+                $brgSelect = Barang::findOrFail($d->barang_id);
+                $brgSelect->update([
+                    'stock' => (float)$brgSelect->stock + $d->qty
+                ]);
+            }
             Penjualan::findOrFail($id)->delete();
             PenjualanDetail::where('penjualan_id', $id)->delete();
             JurnalUmum::where('link_id', $id)->delete();
@@ -222,13 +229,19 @@ class PenjualanController extends Controller
 
     public function report(Request $request)
     {
-        $data = DB::select("select date_format(p.tanggal,'%Y-%m-%d') As 'date', b.nama_barang, b.kode, s.nama_satuan,
+        $data = DB::select("select date_format(p.tanggal,'%Y-%m-%d') As 'date', b.nama_barang, b.kode,
                         pd.qty, pd.total, pd.harga, pd.actual_harga
                         FROM t_penjualan p
                         INNER join t_penjualan_detail pd on pd.penjualan_id = p.id
                         inner join m_barang b on b.id = pd.barang_id
-                        inner join m_satuan s on s.id = b.satuan_id
                         WHERE date_format(p.tanggal,'%Y-%m') = '$request->date'");
+        // $data = DB::select("select date_format(p.tanggal,'%Y-%m-%d') As 'date', b.nama_barang, b.kode, s.nama_satuan,
+        //                 pd.qty, pd.total, pd.harga, pd.actual_harga
+        //                 FROM t_penjualan p
+        //                 INNER join t_penjualan_detail pd on pd.penjualan_id = p.id
+        //                 inner join m_barang b on b.id = pd.barang_id
+        //                 inner join m_satuan s on s.id = b.satuan_id
+        //                 WHERE date_format(p.tanggal,'%Y-%m') = '$request->date'");
         $pisahTanggal = explode("-", $request->date);
         $bulan = $pisahTanggal[1];
         $header = $this->cetakHeader();

@@ -121,16 +121,16 @@
                   <td class="text-center">{{ i + 1 }}</td>
                   <td>{{ r.articleNo }}</td>
                   <td>{{ r.barangname }}</td>
-                  <td>{{ r.unit }}</td>
+                  <!-- <td>{{ r.unit }}</td> -->
                   <td class="text-end">{{ r.qty }}</td>
                   <td class="text-end">
-                    {{ vueNumberFormat(r.price, { precision: 2 }) }}
+                    {{ vueNumberFormat(r.price, { precision: 0 }) }}
                   </td>
                   <td class="text-end">
-                    {{ vueNumberFormat(r.priceActual, { precision: 2 }) }}
+                    {{ vueNumberFormat(r.priceActual, { precision: 0 }) }}
                   </td>
                   <td class="text-end">
-                    {{ vueNumberFormat(r.qty * r.priceActual, { precision: 2 }) }}
+                    {{ vueNumberFormat(r.qty * r.priceActual, { precision: 0 }) }}
                   </td>
                   <td class="text-center">
                     <button
@@ -151,15 +151,15 @@
                   </td>
                 </tr>
                 <tr v-show="tableLoading">
-                  <td colspan="8" class="text-center">Loading...</td>
+                  <td colspan="7" class="text-center">Loading...</td>
                 </tr>
                 <tr v-show="paginatedDatas.length === 0 && !tableLoading">
-                  <td colspan="8" class="text-center">Tidak ada data...</td>
+                  <td colspan="7" class="text-center">Tidak ada data...</td>
                 </tr>
               </tbody>
               <tfoot>
                 <tr>
-                  <th class="text-end fw-bold" colspan="7">Total</th>
+                  <th class="text-end fw-bold" colspan="6">Total</th>
                   <th class="text-end fw-bold">
                     {{ vueNumberFormat(countSaldo, { precision: 2 }) }}
                   </th>
@@ -218,12 +218,12 @@ export default {
         type: "string",
         style: "cursor: pointer;",
       },
-      {
-        label: "Unit",
-        name: "unit",
-        type: "string",
-        style: "cursor: pointer;",
-      },
+      //   {
+      //     label: "Unit",
+      //     name: "unit",
+      //     type: "string",
+      //     style: "cursor: pointer;",
+      //   },
       {
         label: "Qty",
         name: "qty",

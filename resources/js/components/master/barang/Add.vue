@@ -131,6 +131,7 @@
                 type="number"
                 class="form-control text-end"
                 placeholder="Stock"
+                step=".01"
                 :class="{ 'is-invalid': form.errors.has('stock') }"
               />
               <div

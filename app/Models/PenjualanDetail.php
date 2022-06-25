@@ -15,6 +15,6 @@ class PenjualanDetail extends Model
 
     function barang()
     {
-        return $this->belongsTo(Barang::class, 'barang_id', 'id');
+        return $this->hasOne(Barang::class, 'id', 'barang_id');
     }
 }

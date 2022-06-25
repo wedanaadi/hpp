@@ -65,7 +65,19 @@
               />
             </div>
           </div>
-          <div class="col-12 col-md-3">
+          <div class="col-12 col-md">
+            <label for="formGambar">Gambar</label>
+            <input
+              id="formGambar"
+              class="form-control"
+              type="file"
+              name="file"
+              @change="handleFile"
+              :class="{ 'is-invalid': form.errors.has('file') }"
+            />
+            <HasError :form="form" field="file" />
+          </div>
+          <!-- <div class="col-12 col-md-3">
             <div class="form-group">
               <label for="unit">Subcategory</label>
               <v-select
@@ -81,8 +93,8 @@
                 v-html="form.errors.get('subcategory')"
               />
             </div>
-          </div>
-          <div class="col-12 col-md-3">
+          </div> -->
+          <!-- <div class="col-12 col-md-3">
             <div class="form-group">
               <label for="unit">Unit</label>
               <v-select
@@ -98,8 +110,8 @@
                 v-html="form.errors.get('unit')"
               />
             </div>
-          </div>
-          <div class="col-12 col-md-3 mt-4 g-0">
+          </div> -->
+          <!-- <div class="col-12 col-md-3 mt-4 g-0">
             <button
               type="button"
               @click="showSubklasifikasi()"
@@ -107,10 +119,10 @@
             >
               <i class="bi bi-plus-square float-start"></i> Tambah Unit
             </button>
-          </div>
+          </div> -->
         </div>
         <div class="row">
-          <div class="col-12 col-md-4">
+          <!-- <div class="col-12 col-md-4">
             <label for="avrg">Average Price</label>
             <VueNumberFormat
               v-model:value="form.avrg"
@@ -122,8 +134,8 @@
               v-if="form.errors.has('avrg')"
               v-html="form.errors.get('avrg')"
             />
-          </div>
-          <div class="col-12 col-md-3">
+          </div> -->
+          <!-- <div class="col-12 col-md-3">
             <div class="form-group">
               <label for="desciption">Stock</label>
               <input
@@ -139,19 +151,7 @@
                 v-html="form.errors.get('stock')"
               />
             </div>
-          </div>
-          <div class="col-12 col-md">
-            <label for="formGambar">Gambar</label>
-            <input
-              id="formGambar"
-              class="form-control"
-              type="file"
-              name="file"
-              @change="handleFile"
-              :class="{ 'is-invalid': form.errors.has('file') }"
-            />
-            <HasError :form="form" field="file" />
-          </div>
+          </div> -->
         </div>
       </div>
       <div class="card-footer">
@@ -221,8 +221,8 @@ export default {
         articleNo: "",
         desc: "",
         jenis: "2",
-        subcategory: null,
-        unit: null,
+        subcategory: "-",
+        unit: "-",
         avrg: 0,
         stock: 0,
         file: null,

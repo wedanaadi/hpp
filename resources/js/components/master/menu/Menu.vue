@@ -70,18 +70,18 @@
                 <td class="text-center">{{ index + 1 }}</td>
                 <td>{{ row.kode }}</td>
                 <td>{{ row.nama_barang }}</td>
-                <td>{{ row.unit.nama_satuan }}</td>
+                <!-- <td>{{ row.unit.nama_satuan }}</td> -->
                 <td class="text-end">
                   <!-- {{ vueNumberFormat(row.stock, { precision: 2 }) }} -->
                   {{ row.stock }}
                 </td>
                 <td>{{ row.jenis === 1 ? "Bahan Baku" : "Bahan Jadi" }}</td>
-                <!-- <td class="text-end">
-                  {{ vueNumberFormat(row.harga_jual, { precision: 2 }) }}
-                </td> -->
                 <td class="text-end">
-                  {{ vueNumberFormat(row.harga_beli, { precision: 2 }) }}
+                  {{ vueNumberFormat(row.harga_jual, { precision: 2 }) }}
                 </td>
+                <!-- <td class="text-end">
+                  {{ vueNumberFormat(row.harga_beli, { precision: 2 }) }}
+                </td> -->
                 <td class="text-center">
                   <button
                     v-show="level !== '4'"
@@ -209,12 +209,6 @@ export default {
         style: "cursor: pointer;",
       },
       {
-        label: "Unit",
-        name: "satuan_id",
-        type: "string",
-        style: "cursor: pointer;",
-      },
-      {
         label: "Stock",
         name: "stock",
         type: "number",
@@ -226,15 +220,9 @@ export default {
         type: "string",
         style: "cursor: pointer;",
       },
-      //   {
-      //     label: "Harga Jual",
-      //     name: "harga_jual",
-      //     type: "number",
-      //     style: "cursor: pointer;",
-      //   },
       {
-        label: "Harga Beli",
-        name: "harga_beli",
+        label: "Harga Jual",
+        name: "harga_jual",
         type: "number",
         style: "cursor: pointer;",
       },
@@ -273,9 +261,9 @@ export default {
   methods: {
     detailModal(item) {
       this.detaildata.push({
-        main: item.subcategory.category.category_name,
-        sub: item.subcategory.subcategory_name,
-        price: item.harga_beli,
+        main: "-",
+        sub: "-",
+        price: item.harga_jual,
         last: item.last_purchase_price,
       });
       $("#modalDetail").modal("show");
@@ -367,20 +355,19 @@ export default {
               key.toLowerCase() === "kode" ||
               key.toLowerCase() === "nama_barang" ||
               key.toLowerCase() === "stock" ||
-              key.toLowerCase() === "harga_jual" ||
-              key.toLowerCase() === "harga_beli"
+              key.toLowerCase() === "harga_jual"
             ) {
               return (
                 String(row[key]).toLowerCase().indexOf(this.search.toLowerCase()) > -1
               );
             }
-            if (key.toLowerCase() === "unit") {
-              return (
-                String(row[key]["nama_satuan"])
-                  .toLowerCase()
-                  .indexOf(this.search.toLowerCase()) > -1
-              );
-            }
+            // if (key.toLowerCase() === "unit") {
+            //   return (
+            //     String(row[key]["nama_satuan"])
+            //       .toLowerCase()
+            //       .indexOf(this.search.toLowerCase()) > -1
+            //   );
+            // }
             if (key.toLowerCase() === "jenis") {
               const desc = this.search.toLowerCase() === "bahan baku" ? 1 : 2;
               return String(row[key]).toLowerCase().indexOf(desc) > -1;

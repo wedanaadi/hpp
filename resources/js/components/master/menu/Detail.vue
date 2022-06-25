@@ -10,7 +10,7 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Detail Barang {{ data.nama_barang }}</h5>
+          <h5 class="modal-title">Detail Menu {{ data.nama_barang }}</h5>
           <button
             type="button"
             class="btn-close"
@@ -25,18 +25,18 @@
                 <td>Main Group</td>
                 <td>: {{ detil.main }}</td>
                 <td></td>
-                <td>Harga Beli</td>
+                <td>Harga Jual</td>
                 <td>: {{ vueNumberFormat(detil.price, { precision: 2 }) }}</td>
               </tr>
               <tr>
                 <td>Sub Main Group</td>
                 <td>: {{ detil.sub }}</td>
                 <td></td>
-                <td>Last Harga Beli</td>
+                <!-- <td>Last Harga Beli</td>
                 <td>
                   :
                   {{ vueNumberFormat(detil.last, { precision: 2 }) }}
-                </td>
+                </td> -->
               </tr>
             </table>
           </div>
