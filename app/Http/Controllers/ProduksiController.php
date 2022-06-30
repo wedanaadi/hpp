@@ -94,8 +94,23 @@ class ProduksiController extends Controller
                 ];
                 $barangData = Barang::findOrFail($row['barangid']);
                 $qty = $row['qty'];
-                if (strtolower($row['unitmain']) === 'kg' or strtolower($row['unitmain']) === 'l') {
-                    $qty = $row['qty'] / 1000;
+                // if (strtolower($row['unit']) === 'gr' or strtolower($row['unitmain']) === 'ml') {
+                //     $qty = $row['qty'] / 1000;
+                // }
+                // if (strtolower($row['unit']) !== strtolower($row['unitmain'])) {
+                //     $qty = $row['qty'] / 1000;
+                // }
+                if (
+                    strtolower($barangData->unit->nama_satuan) === 'ltr'
+                    or strtolower($barangData->unit->nama_satuan) === 'gr'
+                    or strtolower($barangData->unit->nama_satuan) === 'g'
+                    or strtolower($barangData->unit->nama_satuan) === 'l'
+                ) {
+                    $qty = $row['qty'];
+                } else {
+                    if (strtolower($barangData->unit->nama_satuan) !== strtolower($row['unit'])) {
+                        $qty = (float)$row['qty'] / 1000;
+                    }
                 }
                 $dataUpBarang = [
                     'stock' => $barangData->stock - $qty,
@@ -158,13 +173,25 @@ class ProduksiController extends Controller
             foreach ($detail as $d) {
                 $barangData = Barang::with('unit')->find($d->bahan_id);
                 $qty = $d->qty;
-                if (strtolower($barangData->unit->nama_satuan) === 'kg' or strtolower($barangData->unit->nama_satuan) === 'l') {
-                    $qty = (float)$d->qty / 1000;
+                // if (strtolower($barangData->unit->nama_satuan) === 'kg' or strtolower($barangData->unit->nama_satuan) === 'l' or strtolower($barangData->unit->nama_satuan) === 'ltr') {
+                //     $qty = (float)$d->qty / 1000;
+                // }
+                if (
+                    strtolower($barangData->unit->nama_satuan) === 'ltr'
+                    or strtolower($barangData->unit->nama_satuan) === 'gr'
+                    or strtolower($barangData->unit->nama_satuan) === 'g'
+                    or strtolower($barangData->unit->nama_satuan) === 'l'
+                ) {
+                    $qty = $d->qty;
+                } else {
+                    if (strtolower($barangData->unit->nama_satuan) !== $d->unit) {
+                        $qty = (float)$d->qty / 1000;
+                    }
                 }
-                $databarang = [
+                $databarangOld = [
                     'stock' => $barangData->stock + $qty,
                 ];
-                $barangData->update($databarang);
+                $barangData->update($databarangOld);
             }
             ProduksiDetail::where('produksi_id', $id)->delete();
             // end restored data insert
@@ -196,8 +223,20 @@ class ProduksiController extends Controller
                 ];
                 $barangData = Barang::findOrFail($row['barangid']);
                 $qty = $row['qty'];
-                if (strtolower($row['unitmain']) === 'kg' or strtolower($row['unitmain']) === 'ml') {
-                    $qty = $row['qty'] / 1000;
+                // if (strtolower($row['unitmain']) === 'kg' or strtolower($row['unitmain']) === 'l' or strtolower($row['unitmain']) === 'ltr') {
+                //     $qty = $row['qty'] / 1000;
+                // }
+                if (
+                    strtolower($row['unitmain']) === 'ltr'
+                    or strtolower($row['unitmain']) === 'gr'
+                    or strtolower($row['unitmain']) === 'g'
+                    or strtolower($row['unitmain']) === 'l'
+                ) {
+                    $qty = $row['qty'];
+                } else {
+                    if (strtolower($row['unitmain']) !== $d->unit) {
+                        $qty = (float)$row['qty'] / 1000;
+                    }
                 }
                 $dataUpBarang = [
                     'stock' => $barangData->stock - $qty,

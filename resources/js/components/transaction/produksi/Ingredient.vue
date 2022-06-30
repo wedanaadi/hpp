@@ -31,6 +31,9 @@
               ></v-select>
             </div>
           </div>
+          <div v-show="isAlert" class="alert alert-danger" role="alert">
+            Stock kosong!
+          </div>
           <hr />
           <h3>Ingredient Hand On</h3>
           <div class="row">
@@ -85,7 +88,7 @@
                         :checked="check.kgtogram"
                       />
                       <label class="form-check-label" for="customColorCheck1">
-                        Kilogram (KG) -> Gram (Gr)
+                        to Gram (Gr)
                       </label>
                     </div>
                   </div>
@@ -100,7 +103,7 @@
                         :checked="check.ltoml"
                       />
                       <label class="form-check-label" for="customColorCheck1">
-                        Liter (L) -> Mililiter (Ml)
+                        to Mililiter (Ml)
                       </label>
                     </div>
                   </div>
@@ -166,13 +169,15 @@ export default {
   props: ["data"],
   data() {
     return {
+      costOld: 0,
+      isAlert: false,
       showCalculation: false,
       check: {
         kgtogram: false,
         ltoml: false,
       },
       loading: false,
-      disabled: false,
+      disabled: true,
       optUnit: [],
       ingredientAdd: new Form({
         barangid: null,
@@ -202,6 +207,7 @@ export default {
         this.check.kgtogram = false;
         this.check.ltoml = true;
       }
+      this.disabled = false;
       this.showCalculation = true;
     },
     handleParentClick(e) {
@@ -223,6 +229,7 @@ export default {
         } else {
           this.ingredientAdd.unit = this.ingredientAdd.unitmain;
           this.ingredientAdd.cost = 0;
+          this.ingredientAdd.cost = this.costOld;
         }
       }
 
@@ -238,7 +245,7 @@ export default {
           this.ingredientAdd.unit = this.optUnit[objIndex];
         } else {
           this.ingredientAdd.unit = this.ingredientAdd.unitmain;
-          this.ingredientAdd.cost = 0;
+          this.ingredientAdd.cost = this.costOld;
         }
       }
     },
@@ -263,14 +270,24 @@ export default {
           return String(row[key]).toLowerCase().indexOf(id) > -1;
         });
       });
+      if (parseFloat(dataBarang[0].stock) > 0) {
+        this.disabled = false;
+        this.isAlert = false;
+        this.showCalculation = true;
+      } else {
+        this.disabled = true;
+        this.isAlert = true;
+        this.showCalculation = false;
+      }
       this.ingredientAdd.price = dataBarang[0].harga_beli;
       this.ingredientAdd.unitmain = dataBarang[0].unit.nama_satuan;
       this.ingredientAdd.articleNo = dataBarang[0].kode;
       this.ingredientAdd.barangname = dataBarang[0].nama_barang;
       this.ingredientAdd.stock = dataBarang[0].stock;
-      this.showCalculation = true;
+      //   this.showCalculation = true;
       this.ingredientAdd.unit = dataBarang[0].unit.nama_satuan;
       this.ingredientAdd.cost = dataBarang[0].harga_beli;
+      this.costOld = dataBarang[0].harga_beli;
       this.check.kgtogram = false;
       this.check.ltoml = false;
     },

@@ -12,6 +12,7 @@
         <div class="modal-header">
           <h5 class="modal-title">Detail Pembelian</h5>
           <button
+            @click="closeModal()"
             type="button"
             class="btn-close"
             data-bs-dismiss="modal"
@@ -238,6 +239,18 @@ export default {
     };
   },
   methods: {
+    closeModal() {
+      this.length = 10;
+      this.search = "";
+      this.pagination = {
+        currentPage: 1,
+        total: "",
+        nextPage: "",
+        prevPage: "",
+        from: "",
+        to: "",
+      };
+    },
     paginate(array, length, pageNumber) {
       this.pagination.from = array.length ? (pageNumber - 1) * length + 1 : " ";
       this.pagination.to =
